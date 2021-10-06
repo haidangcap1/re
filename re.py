@@ -1,8 +1,7 @@
 #@title **INSTALL YOUR VPS BY GOD MINER**
 #@markdown  It takes 4-5 minutes for installation
  
-import os
-import subprocess
+
  
 #@markdown  Visit http://remotedesktop.google.com/headless and Copy the command after authentication
  
