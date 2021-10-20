@@ -52,7 +52,4 @@ from tensorflow.keras import mixed_precision
 
 mixed_precision.set_global_policy('mixed_float16')
 #@title HIDUP INDAH BILA MENCARI BERKAH
-!gdown --id 1SRjP8WmEBxQQ9GsyiSQ98etRvlYq7Mq0
-!unzip tam.zip
-# %cd coleb
-!bash tra.sh
+
