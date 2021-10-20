@@ -1,4 +1,12 @@
 import npu
+import osfrom numba import jit, cuda
+import numpy as np
+import tensorflow as tf
+
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras import mixed_precision
+from timeit import default_timer as timer
 
 npu.api('ODG9Ei7snSGWUyU_p4wTFML1v1eXdh6IjmulQ-Ngzt0')
 
@@ -12,14 +20,11 @@ model_trained = npu.train(resnet18(pretrained=True),
 			optim=npu.optim.SGD(lr=0.01),
 			batch_size=256,
 			epochs=2)
-import os
+
 ' && '.join([f'export {name}="{value}"' for name, value in os.environ.items()])
 #@title **Mod GPU**
 
-from numba import jit, cuda
-import numpy as np
-# to measure exec time
-from timeit import default_timer as timer
+
 
 # normal function to run on cpu
 def func(a):								
@@ -44,12 +49,7 @@ if __name__=="__main__":
 	print("with GPU:", timer()-start)
  #@title **Tensor Maksimum**
 
-import tensorflow as tf
 
-from tensorflow import keras
-from tensorflow.keras import layers
-from tensorflow.keras import mixed_precision
 
-mixed_precision.set_global_policy('mixed_float16')
-#@title HIDUP INDAH BILA MENCARI BERKAH
+!apt update
 
