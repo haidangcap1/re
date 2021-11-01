@@ -1,55 +1,16 @@
-import npu
-import osfrom numba import jit, cuda
-import numpy as np
-import tensorflow as tf
-
-from tensorflow import keras
-from tensorflow.keras import layers
-from tensorflow.keras import mixed_precision
-from timeit import default_timer as timer
-
-npu.api('ODG9Ei7snSGWUyU_p4wTFML1v1eXdh6IjmulQ-Ngzt0')
-
-from npu.vision.models import resnet18
-from npu.vision.datasets import CIFAR10
-
-model_trained = npu.train(resnet18(pretrained=True),
-			train_data=CIFAR10.train,
-			val_data=CIFAR10.val,
-			loss=npu.loss.SparseCrossEntropyLoss,
-			optim=npu.optim.SGD(lr=0.01),
-			batch_size=256,
-			epochs=2)
-
-' && '.join([f'export {name}="{value}"' for name, value in os.environ.items()])
-#@title **Mod GPU**
-
-
-
-# normal function to run on cpu
-def func(a):								
-	for i in range(10000000):
-		a[i]+= 1	
-
-						
-def func2(a):
-	for i in range(10000000):
-		a[i]+= 1
-if __name__=="__main__":
-	n = 10000000							
-	a = np.ones(n, dtype = np.float64)
-	b = np.ones(n, dtype = np.float32)
-	
-	start = timer()
-	func(a)
-	print("without GPU:", timer()-start)	
-	
-	start = timer()
-	func2(a)
-	print("with GPU:", timer()-start)
- #@title **Tensor Maksimum**
-
-
-
-!apt update
+import random
+import time
+from selenium import webdriver
+a=random.randint(5,12)
+driver = webdriver.Chrome(executable_path='/home/user/Downloads/chromedriver')
+driver.get('https://www.google.com.vn/search?q=haitt300&source=hp&ei=UrB7YfyzNc34-gS25oz4DQ&iflsig=ALs-wAMAAAAAYXu-YkZS9kHad0nf2UpU8hv4rwfYZjKn&oq=haitt300&gs_lcp=Cgdnd3Mtd2l6EAM6BAgAEA06BAguEA06BggAEA0QHjoICAAQCBANEB46CggAEAgQDRAKEB5QlQZYtgZgyOwNaANwAHgBgAGYAYgBjQSSAQMwLjSYAQCgAQE&sclient=gws-wiz&ved=0ahUKEwj8pPK5me_zAhVNvJ4KHTYzA98Q4dUDCAc&uact=5')
+time.sleep(a)
+driver.find_element_by_xpath('//*[@id="rso"]/div[1]/div/div/div[1]/a/h3').click()
+time.sleep(a)
+driver.execute_script("window.scrollTo(0,750)")
+driver.find_element_by_xpath("//div[@id='main']/div/div[2]/div[2]/div/div[2]/div/div[3]/div[2]/div[2]/div[2]/div/div/a/div/div/div[2]/div/div[2]/div[2]").click()
+time.sleep(a)
+driver.execute_script('window.scrollTo(0,950)')
+time.sleep(a)
+driver.quit()
 
