@@ -24,8 +24,7 @@ from pathlib import Path
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
 
-from colorama import init
-init()
+
 wb = load_workbook('a.xlsx')
 sh = wb.active
 maxrow = sh.max_row
