@@ -1,5 +1,4 @@
-from tarfile import LNKTYPE
-from types import DynamicClassAttribute
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
@@ -24,7 +23,7 @@ from selenium.common.exceptions import TimeoutException
 from pathlib import Path
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
-from termcolor import colored
+
 from colorama import init
 init()
 wb = load_workbook('a.xlsx')
